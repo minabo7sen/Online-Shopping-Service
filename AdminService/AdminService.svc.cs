@@ -31,12 +31,28 @@ namespace AdminService
 
         public int DeleteItemById(int Id)
         {
-            throw new NotImplementedException();
+            ApplicationDbContext _context = new ApplicationDbContext();
+             var item = _context.Items.SingleOrDefault(i => i.Id == Id);
+
+            _context.Items.Remove(item);
+
+            int Retval = _context.SaveChanges();
+            return Retval;
         }
 
         public int EditItem(int Id, string Name, string Description, float Price, string Category)
         {
-            throw new NotImplementedException();
+            ApplicationDbContext _context = new ApplicationDbContext();
+
+            var existingItem = _context.Items.SingleOrDefault(i => i.Id == Id);
+
+            existingItem.Name = Name;
+            existingItem.Description = Description;
+            existingItem.Price = Price;
+            existingItem.Category = Category;
+
+            int Retval = _context.SaveChanges();
+            return Retval;
         }
     }
 }
