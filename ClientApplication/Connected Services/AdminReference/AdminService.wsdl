@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AdminService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:50199/AdminService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:50199/AdminService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAdminService_AddItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddItem" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_AddItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_DeleteItemById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemById" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_DeleteItemById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_EditItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditItem" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_EditItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditItemResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAdminService">
+    <wsdl:operation name="AddItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddItem" message="tns:IAdminService_AddItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/AddItemResponse" message="tns:IAdminService_AddItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteItemById" message="tns:IAdminService_DeleteItemById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteItemByIdResponse" message="tns:IAdminService_DeleteItemById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/EditItem" message="tns:IAdminService_EditItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/EditItemResponse" message="tns:IAdminService_EditItem_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAdminService" type="tns:IAdminService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddItem">
+      <soap:operation soapAction="http://tempuri.org/IAdminService/AddItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemById">
+      <soap:operation soapAction="http://tempuri.org/IAdminService/DeleteItemById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditItem">
+      <soap:operation soapAction="http://tempuri.org/IAdminService/EditItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdminService">
+    <wsdl:port name="BasicHttpBinding_IAdminService" binding="tns:BasicHttpBinding_IAdminService">
+      <soap:address location="http://localhost:50199/AdminService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
