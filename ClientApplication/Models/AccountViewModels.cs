@@ -79,6 +79,24 @@ namespace ClientApplication.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Required]
+        [Display(Name = "Area")]
+        public string Area { get; set; }
+
+        [Required]
+        [Display(Name = "Phone Number")]
+        public string Phone { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel
