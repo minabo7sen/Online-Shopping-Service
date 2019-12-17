@@ -27,7 +27,7 @@ namespace ClientApplication.Controllers
         {
             AdminReference.AdminServiceClient client = new AdminReference.AdminServiceClient();
             client.AddItem(NewItem.Name, NewItem.Description, NewItem.Price, NewItem.Category);
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
