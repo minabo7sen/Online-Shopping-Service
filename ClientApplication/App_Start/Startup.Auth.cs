@@ -54,15 +54,16 @@ namespace ClientApplication
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+                           appId: "1317922991713896",
+                           appSecret: "26126442f9daa5eb4b11ded2e28406b5");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
         }
     }
 }
