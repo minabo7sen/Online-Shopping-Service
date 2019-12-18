@@ -61,8 +61,8 @@ namespace ClientApplication
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "512740552641-e062cgiuhsphm8fhab1qd2g0qbav57qv.apps.googleusercontent.com",
-                ClientSecret = "2KVo-yjDYfAH2xVxm8C4cTzV"
+                ClientId = "512740552641-50095o11pfe495soegtu3p42962gdpp5.apps.googleusercontent.com",
+                ClientSecret = "P8sCe0lk-bBwZLWInUDI_fKB"
             });
             //app.UseYahooAuthentication(new YahooAuthenticationOptions()
             //{ 
