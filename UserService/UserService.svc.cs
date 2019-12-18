@@ -41,7 +41,20 @@ namespace UserService
 
         public void RemoveFromCart(int Id, string Username)
         {
-            throw new NotImplementedException();
+            ApplicationDbContext _context = new ApplicationDbContext();
+
+            var user = _context.Users.SingleOrDefault(u => u.UserName.Equals(Username));
+
+
+            CartItem cartItem = user.ShoppingCart.SingleOrDefault(i => i.ItemId == Id);
+            cartItem.Quantity--;
+
+            if(cartItem.Quantity == 0)
+            {
+                user.ShoppingCart.Remove(cartItem);
+            }
+
+            _context.SaveChanges();
         }
     }
 }
