@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using Owin.Security.Providers.Yahoo;
 using ClientApplication.Models;
 
 namespace ClientApplication
@@ -34,7 +35,7 @@ namespace ClientApplication
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -58,10 +59,15 @@ namespace ClientApplication
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "512740552641-e062cgiuhsphm8fhab1qd2g0qbav57qv.apps.googleusercontent.com",
+                ClientSecret = "2KVo-yjDYfAH2xVxm8C4cTzV"
+            });
+            //app.UseYahooAuthentication(new YahooAuthenticationOptions()
+            //{ 
+            //   ConsumerKey = "",
+            //   ConsumerSecret = ""
             //});
         }
     }
