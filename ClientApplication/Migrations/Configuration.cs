@@ -1,5 +1,8 @@
 ﻿namespace ClientApplication.Migrations
 {
+    using ClientApplication.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -18,6 +21,17 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+
+            string roleName = "Admins";
+            IdentityResult roleResult;
+
+            if (!RoleManager.RoleExists(roleName))
+            {
+                roleResult = RoleManager.Create(new IdentityRole(roleName));
+            }
         }
     }
 }

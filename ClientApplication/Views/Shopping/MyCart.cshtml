@@ -2,37 +2,198 @@
 
 @{
     ViewBag.Title = "MyCart";
+    float SubTotal = 0;
 }
 
-<h2>MyCart</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th></th>
-    </tr>
+<a class="btn btn-primary" href="@Url.Action("Index", "Shopping")">
+    <span class="fa fa-step-backward"> </span>
+    Go back to all items
+</a>
+<hr />
+<h2 class="text-center text-dark font-weight-bold">My Shopping Cart</h2>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Quantity)
-    </td>
-    <td>
-        @Html.ActionLink("Add Another To Cart", "AddToCart", new { id=item.ItemId }) |
-        @Html.ActionLink("Remove From Cart", "RemoveFromCart", new { id=item.ItemId  }) 
-    </td>
-</tr>
-}
+<table class="table table-bordered text-center table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                <a class="btn btn-success" href="@Url.Action("AddToCart", "Shopping", new { id = item.ItemId })">
+                    <span class="fa fa-plus-circle"> </span>
+                    Add To Cart
+                </a>
+                ||
+                <a class="btn btn-danger" href="@Url.Action("RemoveFromCart", "Shopping", new { id = item.ItemId })">
+                    <span class="fa fa-minus-circle"> </span>
+                    Remove From Cart
+                </a>
+            </td>
+        </tr>
+    }
 
 </table>
+
+<hr />
+<div class="row">
+
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-6">
+        <div class="card border-success">
+            <div class="card-header text-center font-weight-bold">
+                Checkout Box
+            </div>
+            <div class="card-body">
+                <table class="table table-clear text-center">
+                    <tr>
+                        <th>
+                            Product Name
+                        </th>
+                        <th>
+                            Unit Quantity
+                        </th>
+                        <th>
+                            Unit Price
+                        </th>
+                    </tr>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            SubTotal = SubTotal + (item.Item.Price * item.Quantity);
+                            <tr>
+                                <td class="left">
+                                    <strong>@item.Item.Name</strong>
+                                </td>
+                                <td>
+
+                                    @item.Quantity
+                                </td>
+                                <td class="right">
+                                    $@item.Item.Price
+                                </td>
+                            </tr>
+
+                        }
+
+                        <tr>
+                            <td></td>
+                            <td class="right">
+                                <strong>Subtotal</strong>
+                            </td>
+                            <td class="right">
+                                $@SubTotal
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="right">
+                                <strong>Discount (10%)</strong>
+                            </td>
+                            <td class="right">
+                                @{
+                                    var disc = SubTotal * 0.1;
+                                }
+                                $@disc
+                            </td>
+                        </tr>
+                        <tr class="bg-dark text-light font-weight-bolder">
+                            <td></td>
+                            <td class="right">
+                                <strong>Total</strong>
+                            </td>
+                            <td class="right">
+                                @{
+                                    var total = SubTotal - disc;
+                                }
+                                $@total
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer text-center align-content-center">
+                <button type="button" class="btn btn-success mx-auto" style="width:70%" data-toggle="modal" data-target="#BuyModal">
+                    <span class="fa fa-money"></span>
+                    Go To Payment
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade text-justify" id="BuyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Payment Dialog</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Your purchases is of total <strong>$@total</strong>, Please choose which way you want to procced with payment.
+            </div>
+            <div class="modal-footer text-center align-content-center">
+                <button type="button" class="btn btn-outline-info mx-auto" style="width:25%" data-toggle="modal" data-target="#PinModal">
+                    <span class="fa fa-cc-visa"></span>
+                    Visa
+                </button>
+                <button type="button" class="btn btn-outline-info mx-auto" style="width:30%" data-toggle="modal" data-target="#PinModal">
+                    <span class="fa fa-cc-mastercard"></span>
+                    MasterCard
+                </button>
+                <button type="button" class="btn btn-outline-success mx-auto" style="width:35%" >
+                    <span class="fa fa-money"></span>
+                    Cash on Delivery
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade text-justify" id="PinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Please Enter Your Pin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center align-content-center form-group">
+                <input type="password" class="mx-auto" style="width:5%" />
+                <input type="password" class="mx-auto" style="width:5%" />
+                <input type="password" class="mx-auto" style="width:5%" />
+                <input type="password" class="mx-auto" style="width:5%" />
+
+            </div>
+            <div class="modal-footer text-center align-content-center">
+                <button type="button" class="btn btn-success mx-auto" style="width:80%" data-toggle="modal" data-target="#PinModal">
+                    <span class="fa fa-check"></span>
+                    Confirm
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>

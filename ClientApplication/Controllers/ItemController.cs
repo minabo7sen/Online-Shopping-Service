@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ClientApplication.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class ItemController : Controller
     {
         // GET: Item
