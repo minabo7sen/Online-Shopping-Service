@@ -64,11 +64,13 @@ namespace ClientApplication
                 ClientId = "512740552641-50095o11pfe495soegtu3p42962gdpp5.apps.googleusercontent.com",
                 ClientSecret = "P8sCe0lk-bBwZLWInUDI_fKB"
             });
-            //app.UseYahooAuthentication(new YahooAuthenticationOptions()
-            //{ 
-            //   ConsumerKey = "",
-            //   ConsumerSecret = ""
-            //});
+
+            app.UseYahooAuthentication(new YahooAuthenticationOptions()
+            {
+
+                ConsumerKey = "dj0yJmk9dkFETTJPaVZOQ0J4JmQ9WVdrOWFVMTFPRUpwTlRBbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTRh",
+                ConsumerSecret = "f7a02d500404f4f21f079efae44a1466f7f5d240"
+            });
 
         }
     }
