@@ -11,10 +11,10 @@ namespace UserService
     [ServiceContract]
     public interface IUserService
     {
-        [OperationContract (IsOneWay = false)]
+        [OperationContract (IsOneWay = true)]
         void AddToCart(int Id, string Username);
 
-        [OperationContract (IsOneWay = false)]
+        [OperationContract (IsOneWay = true)]
         void RemoveFromCart(int Id, string Username);
     }
 }

@@ -15,16 +15,16 @@ namespace ClientApplication.UserReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserReference.IUserService")]
     public interface IUserService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddToCart", ReplyAction="http://tempuri.org/IUserService/AddToCartResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUserService/AddToCart")]
         void AddToCart(int Id, string Username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddToCart", ReplyAction="http://tempuri.org/IUserService/AddToCartResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUserService/AddToCart")]
         System.Threading.Tasks.Task AddToCartAsync(int Id, string Username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/RemoveFromCart", ReplyAction="http://tempuri.org/IUserService/RemoveFromCartResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUserService/RemoveFromCart")]
         void RemoveFromCart(int Id, string Username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/RemoveFromCart", ReplyAction="http://tempuri.org/IUserService/RemoveFromCartResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUserService/RemoveFromCart")]
         System.Threading.Tasks.Task RemoveFromCartAsync(int Id, string Username);
     }
     

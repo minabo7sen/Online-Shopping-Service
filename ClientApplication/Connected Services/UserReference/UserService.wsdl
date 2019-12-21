@@ -9,23 +9,15 @@
   <wsdl:message name="IUserService_AddToCart_InputMessage">
     <wsdl:part name="parameters" element="tns:AddToCart" />
   </wsdl:message>
-  <wsdl:message name="IUserService_AddToCart_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddToCartResponse" />
-  </wsdl:message>
   <wsdl:message name="IUserService_RemoveFromCart_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveFromCart" />
-  </wsdl:message>
-  <wsdl:message name="IUserService_RemoveFromCart_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveFromCartResponse" />
   </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="AddToCart">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddToCart" message="tns:IUserService_AddToCart_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddToCartResponse" message="tns:IUserService_AddToCart_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RemoveFromCart">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/RemoveFromCart" message="tns:IUserService_RemoveFromCart_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/RemoveFromCartResponse" message="tns:IUserService_RemoveFromCart_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
@@ -35,18 +27,12 @@
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RemoveFromCart">
       <soap:operation soapAction="http://tempuri.org/IUserService/RemoveFromCart" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="UserService">
